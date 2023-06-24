@@ -4,32 +4,7 @@ import time
 import threading
 from flask import Flask, render_template
 import os
-"""""""""""""""""""""""""""""""""""
-This python project is written by Euris Montanez.
-This is the first project in which my aim is to incorporate all that I learned in the python package requests.
 
-TODO Learning:
-1. Learn how to comment correctly.
-2. Learn requests functions, like json(), get(), and post().
-3. Learn how to interact with arrays, and dictionaries.
-4. Learn the Moonraker API, that is connected to my raspberry pi running fluiddpi. (https://moonraker.readthedocs.io/en/latest/web_api/)
-5. Find the best way to make a GUI on python, that can show live webcamera feed. (Maybe tkinter? I hate this package ;-;)
-6. Maybe try to code my own AI that checks to see if the print has failed.
-
-TODO Moonraker API:
-1. The documentation for this API is properly written.
-2. Can control the printer via requests fairly easily.
-3. Might be able to stream webcam footage through the API.
-
-
-TODO PyQT?:
-1. Planning on making a nice gui since, this is an application I most likely would use.
-2. Learn more about PyQt.
-
-TODO Webcamera:
-1. Use moonraker API to stream a live footage straight into the app.
-TODO Numpy and Panda:
-"""""""""""""""""""""""""""""""""""
 
 def main():  # this is the main function were I call all functions.
     while True:  # this loop checks to see if the getServerInfo function works, if it throws an exception, than I can asume that the server is down, or the ip address is typed incorrectly.
@@ -78,16 +53,14 @@ def main():  # this is the main function were I call all functions.
     displayTools(ip)
     # checks getServerInfo function for klipper state, if its not ready, then restart firmware.
     
-def displayTools(ip):
+def displayTools(ip): # this function is meant to be initiated and shown across.
     tools = getTools(ip)
+    os.system('cls')
+    for tool in tools:
+        tool_temp = toolTemperature(tool, ip)
 
-    while True:
-        os.system('cls')
-        for tool in tools:
-            tool_temp = toolTemperature(tool, ip)
-
-            print(f"{tool} : {tool_temp}")
-        time.sleep(.8)
+        print(f"{tool} : {tool_temp}")
+    time.sleep(.8)
         
 
 def getTools(ip): #this function gets all available tools like in the temperature function.
