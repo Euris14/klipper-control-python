@@ -1,6 +1,4 @@
 # klipper control python
-
-"""""""""""""""""""""""""""""""""""
 This Python project is written by Euris Montanez.
 This is the first project in which my aim is to incorporate all that I learned in the Python package requests.
 
@@ -28,6 +26,5 @@ TODO HTML?:
 TODO Webcamera:
 1. Use Moonraker API to stream live footage straight into the app.
 TODO Numpy and Panda:
-1. I eventually want to some how include ai in this maybe like a "pasta" detective or something :)...
+1. I eventually want to somehow include ai in this maybe like a "pasta" detective or something :)...
 2. I need to learn ai.
-"""""""""""""""""""""""""""""""""""
