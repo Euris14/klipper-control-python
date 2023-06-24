@@ -1,7 +1,7 @@
 # klipper control python
     This Python project is written by Euris Montanez.
 
-    This is my first project that I plan to complete, so I would appreciate any help that can point me 
+        This is my first project that I plan to complete, so I would appreciate any help that can point me 
     in the right direction. Thanks!
 
 
@@ -13,9 +13,9 @@
 
 
 # TODO Learning:
-        In order to finish my code I need to learn how to first code a webhook, then be able to use that webhook
-    on my website. The most important thing right now to focus on is getting my current code to be able to interact
-    with flask, http, and webhooks.
+        In order to finish my code I need to learn how to first code a webhook, then be able to use that 
+    webhook on my website. The most important thing right now to focus on is getting my current code to be,
+    able to interact with flask, http, and webhooks.
 
 
 # TODO Moonraker API:
@@ -35,6 +35,6 @@
 
 
 # Learned
-        So far i've learned how to interact with dictionaries and arrays through APIs with the request package.
-    I also learned how to structure my code in a way that makes it possible for the main function to call 
-    every single function.
+        So far i've learned how to interact with dictionaries and arrays through APIs with the 
+    request package. I also learned how to structure my code in a way that makes it possible
+    for the main function to call every single function.
