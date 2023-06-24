@@ -1,30 +1,36 @@
 # klipper control python
     This Python project is written by Euris Montanez.
-    This is the first project in which my aim is to incorporate all that I learned in the Python package requests.
+This is my first project that I plan to complete, so I would appreciate any help that can point me 
+in the right direction. Thanks!
+
+
+# About
+        In this python project my aim is to be able to make a website that allows me to see and control my 
+3d printer. At minimum I would like to be able to see a constant temperature update of all of my tools 
+(ie: Extruder, Hot Bed, and etc) temperatures. The most important thing is to have a webcam that is able
+to detect when something in the print goes wrong (ie: stringing, warping, and etc).
 
 # TODO Learning:
-    1. Learn how to comment correctly.
-    2. Learn requests functions, like json(), get(), and post().
-    3. Learn how to interact with arrays and dictionaries.
-    4. Learn the Moonraker API, which is connected to my raspberry pi running fluiddpi. (https://moonraker.readthedocs.io/en/latest/web_api/)
-    5. Find the best way to make a GUI on Python, that can show a live web camera feed. (Maybe Tkinter? I hate this package ;-;)
-    6. Maybe try to code my own AI that checks to see if the print has failed.
+    In order to finish my code I need to learn how to first code a webhook, then be able to use that webhook
+on my website. The most important thing right now to focus on is getting my current code to be able to interact
+with flask, http, and webhooks.
 
 # TODO Moonraker API:
-    1. The documentation for this API is properly written.
-    2. Can control the printer via requests fairly easily.
-    3. Might be able to stream webcam footage through the API.
+    The Moonraker API, is really easy to understand. The things I want to implemnt in my code would be the 
+endpoint that retrieves a webcams stream.
 
 
 # TODO HTML:
-    1. Planning on making a nice GUI since, this is an application I most likely would use.
-    2. Touch up on my html skills.
-        LEARN Websockets??:
-        1. Apparently, WebSockets allow the program to send real-time information back and forth.
-        2. This could be what I need for getting my webcam to work, and a GUI that automatically updates the information sent to temperatures.
+    Im a little familiar with HTML, so hopefully getting back into it is easy. My main objective with HTML
+is to beable to create a website that is visually appealling and functional. I believe that the best way 
+to make this 'GUI' work is to use webhooks, which allows the program to speak, to the server.
 
 # TODO Webcamera:
-1. Use Moonraker API to stream live footage straight into the app.
-TODO Numpy and Panda:
-1. I eventually want to somehow include ai in this maybe like a "pasta" detective or something :)...
-2. I need to learn ai.
+    I need to be able to see my printer while on the website. I would also like to use an ai that checks 
+    for failed prints, like the pasta detector we all know and love.
+
+
+# Learned
+        So far i've learned how to interact with dictionaries and arrays through APIs with the request package.
+    I also learned how to structure my code in a way that makes it possible for the main function to call 
+    every single function.
