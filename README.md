@@ -1,6 +1,6 @@
 # klipper control python
     This Python project is written by Euris Montanez.
-    
+
     This is my first project that I plan to complete, so I would appreciate any help that can point me 
     in the right direction. Thanks!
 
@@ -11,10 +11,12 @@
     (ie: Extruder, Hot Bed, and etc) temperatures. The most important thing is to have a webcam that is able
     to detect when something in the print goes wrong (ie: stringing, warping, and etc).
 
+
 # TODO Learning:
         In order to finish my code I need to learn how to first code a webhook, then be able to use that webhook
     on my website. The most important thing right now to focus on is getting my current code to be able to interact
     with flask, http, and webhooks.
+
 
 # TODO Moonraker API:
         The Moonraker API, is really easy to understand. The things I want to implemnt in my code would be the 
@@ -25,6 +27,7 @@
         Im a little familiar with HTML, so hopefully getting back into it is easy. My main objective with HTML
     is to beable to create a website that is visually appealling and functional. I believe that the best way 
     to make this 'GUI' work is to use webhooks, which allows the program to speak, to the server.
+
 
 # TODO Webcamera:
         I need to be able to see my printer while on the website. I would also like to use an ai that checks 
