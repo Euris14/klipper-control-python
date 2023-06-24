@@ -24,10 +24,10 @@ def main():  # this is the main function were I call all functions.
             break
         except:
             print("Critical services might be down, letting them restart.")
-        time.sleep(10)
+            time.sleep(10)
 
     
-    for c in server_stats:
+    for c in server_stats: #this for loop just prints the serverstats in succession.
         match c:
             case "host_ip":
                 print(f'\nHost IP: {server_stats[c]}')
@@ -42,26 +42,43 @@ def main():  # this is the main function were I call all functions.
             case "sd_size":
                 print(f'SD Card Size: {server_stats[c]}')
 
-    while server_stats['printer_state'] == 'startup':
-        time.sleep(1)
-        print("\nPrinter is starting up.")
-        if server_stats['printer_state'] != 'ready':
-            break
+    
+    klipper_state = klipperStatus(server_stats['printer_state'], ip)
 
-    print("\nPrinter has connected.")
-    time.sleep(3)
-    displayTools(ip)
-    # checks getServerInfo function for klipper state, if its not ready, then restart firmware.
+    while not klipper_state: # this for loop checks if klipper state is ready or not.
+        klipper_state = klipperStatus(server_stats['printer_state'], ip)
+    print("Printer has connected.", end='\r')
+
+    time.sleep(5)
+    while True:
+        displayTools(ip)
     
 def displayTools(ip): # this function is meant to be initiated and shown across.
     tools = getTools(ip)
-    os.system('cls')
     for tool in tools:
         tool_temp = toolTemperature(tool, ip)
 
         print(f"{tool} : {tool_temp}")
     time.sleep(.8)
+    os.system('cls')
         
+def klipperStatus(klippy, ip):# checks getServerInfo function for klipper state, if its not ready, then restart firmware.
+    if klippy != 'ready':
+        if klippy == 'shutdown':
+            restartFirmware(ip)
+            print("\nPrinter is shutdown, or not connected.\nRestarting...")
+            time.sleep(8)
+            return False
+        elif klippy == 'startup':
+            print('Printer is starting up, please wait.')
+            time.sleep(1)
+            return True
+        elif klippy == 'error':
+            restartFirmware(ip)
+            print('Printer encountered and error while connecting, retrying.')
+            time.sleep(8)
+            return False
+    return True
 
 def getTools(ip): #this function gets all available tools like in the temperature function.
     response = rq.get(f"{ip}/server/temperature_store")
@@ -158,7 +175,7 @@ def serverCheckServices(ip):
         if not serviceState == "active":
             not_active.append(c)
             print(f"{c} is down!")
-            print(f'Restarting service now.10')
+            print(f'Restarting service now.')
 
             rq.post(f"http://10.7.1.215/machine/services/restart?service={c}")
             
