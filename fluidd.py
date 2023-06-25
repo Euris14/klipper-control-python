@@ -146,11 +146,10 @@ def toolTemperature(tool, ip):
     response = rq.get(f"{ip}/server/temperature_store")
     response_json = response.json()
 
-    amountTemp = response_json['result'][tool]['temperatures']
-    extruder_temp = response_json['result'][tool]['temperatures'][len(amountTemp) - 1]
+    temperatures = response_json['result'][tool]['temperatures']
+    tool_temperature = response_json['result'][tool]['temperatures'][len(temperatures) - 1]
 
-    return extruder_temp
-    time.sleep(1)
+    return tool_temperature
 
 
 # this function checks all of the services up on moonraker, and tries to restart them
