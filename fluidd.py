@@ -6,8 +6,9 @@ from flask import Flask, render_template
 import os
 
 
-def main():  # this is the main function were I call all functions.
-    while True:  # this loop checks to see if the getServerInfo function works, if it throws an exception, than I can asume that the server is down, or the ip address is typed incorrectly.
+def main():  # this is the main function were I call all functions. 
+
+    for i in range(10): # this loop checks to see if the getServerInfo function works, if it throws an exception, than I can asume that the server is down, or the ip address is typed incorrectly.
         user_ip = input("Please input your servers ip address (10.7.1.1): ")
         ip = f'http://{user_ip}'
         try:
@@ -15,6 +16,7 @@ def main():  # this is the main function were I call all functions.
             break
         except:
             print("Server is down.")
+        print(f"Could not connect. {i}/10.")
          
     serverCheckServices(ip)
     # this for loop checks if the getServerInfo function is able to get serverstats, if it can't then it wait 10 seconds.
@@ -43,16 +45,17 @@ def main():  # this is the main function were I call all functions.
                 print(f'SD Card Size: {server_stats[c]}')
 
     
-    klipper_state = klipperStatus(server_stats['printer_state'], ip)
+    printer_status = klipperStatus(server_stats['printer_state'])
 
-    while not klipper_state: # this for loop checks if klipper state is ready or not.
-        klipper_state = klipperStatus(server_stats['printer_state'], ip)
-    print("Printer has connected.", end='\r')
+    while not printer_status:
+        print(f"Printer state is '{server_stats['printer_state']}', retrying every 8 mins, until printer is 'ready'.")
+        restartFirmware(ip)
+        time.sleep(8)
+    else:
+        print("Printer has connected.", end='\r')
 
-    time.sleep(5)
-    while True:
-        displayTools(ip)
     
+        
 def displayTools(ip): # this function is meant to be initiated and shown across.
     tools = getTools(ip)
     for tool in tools:
@@ -62,21 +65,13 @@ def displayTools(ip): # this function is meant to be initiated and shown across.
     time.sleep(.8)
     os.system('cls')
         
-def klipperStatus(klippy, ip):# checks getServerInfo function for klipper state, if its not ready, then restart firmware.
+def klipperStatus(klippy):# checks getServerInfo function for klipper state, if its not ready, then restart firmware.
     if klippy != 'ready':
         if klippy == 'shutdown':
-            restartFirmware(ip)
-            print("\nPrinter is shutdown, or not connected.\nRestarting...")
-            time.sleep(8)
             return False
         elif klippy == 'startup':
-            print('Printer is starting up, please wait.')
-            time.sleep(1)
-            return True
+            return False
         elif klippy == 'error':
-            restartFirmware(ip)
-            print('Printer encountered and error while connecting, retrying.')
-            time.sleep(8)
             return False
     return True
 
