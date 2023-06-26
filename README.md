@@ -1,37 +1,37 @@
 # klipper control python
     This Python project is written by Euris Montanez.
 
-        This is my first project that I plan to complete, so I would appreciate any help that can point me 
+        This is the first project that I plan to complete, so I would appreciate any help that can point me 
     in the right direction. Thanks!
 
-# Usage:
+## Usage:
     python server.py "klipperip"
 
-# About
-        In this python project my aim is to be able to make a website that allows me to see and control my 
-    3d printer. At minimum I would like to be able to see a constant temperature update of all of my tools 
-    (ie: Extruder, Hot Bed, and etc) temperatures. The most important thing is to have a webcam that is able
-    to detect when something in the print goes wrong (ie: stringing, warping, and etc).
+## About
+        In this Python project my aim is to be able to make a website that allows me to see and control my 
+    3d printer. At minimum, I would like to be able to see a constant temperature update of all of my tools 
+    (ie: Extruder, Hot Bed, etc) temperatures. The most important thing is to have a webcam that is able
+    to detect when something in the print goes wrong (ie: stringing, warping, etc).
 
 
-# TODO Learning:
+## TODO Learning:
         In order to finish my code I need to learn how to first code a webhook, then be able to use that 
     webhook on my website. The most important thing right now to focus on is getting my current code to be,
-    able to interact with flask, http, and webhooks.
+    able to interact with flask, HTTP, and webhooks.
 
 
-# TODO Moonraker API:
-        The Moonraker API, is really easy to understand. The things I want to implemnt in my code would be the 
-    endpoint that retrieves a webcams stream.
+## TODO Moonraker API:
+        The Moonraker API is really easy to understand. The things I want to implement in my code would be the 
+    endpoint that retrieves a webcam's stream.
 
 
-# TODO HTML:
+## TODO HTML:
         I am familiar with HTML, so hopefully getting back into it is easy. My main objective with HTML
-    is to beable to create a website that is visually appealling and functional. I believe that the best way 
-    to make this 'GUI' work is to use webhooks, which allows the server to automatically update a variable from a server.
+    is to be able to create a website that is visually appealing and functional. I believe that the best way 
+    to make this 'GUI' work is to use webhooks, which allow the server to automatically update a variable from a server.
 
 
-# TODO Webcamera:
+## TODO Webcamera:
         I need to be able to see my printer while on the website. I would also like to use an ai that checks 
     for failed prints, like the pasta detector we all know and love.
 
