@@ -4,6 +4,8 @@
         This is my first project that I plan to complete, so I would appreciate any help that can point me 
     in the right direction. Thanks!
 
+# Usage:
+    python server.py "klipperip"
 
 # About
         In this python project my aim is to be able to make a website that allows me to see and control my 
@@ -26,7 +28,7 @@
 # TODO HTML:
         I am familiar with HTML, so hopefully getting back into it is easy. My main objective with HTML
     is to beable to create a website that is visually appealling and functional. I believe that the best way 
-    to make this 'GUI' work is to use webhooks, which allows the program to speak, to the server.
+    to make this 'GUI' work is to use webhooks, which allows the server to automatically update a variable from a server.
 
 
 # TODO Webcamera:
@@ -37,4 +39,5 @@
 # Learned
         So far I have learned how to interact with dictionaries and arrays through APIs with the 
     request package. I also learned how to structure my code in a way that makes it possible
-    for the main function to call every single function.
+    for the main function to call every single function. I understand websockets, I don't need to make my own
+    since the moonraker api brings it's own webhooks.
