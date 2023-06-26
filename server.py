@@ -3,7 +3,7 @@ import moonraker
 import sys
 import time
 def moonraker_start(server_ip):
-    
+
     if not moonraker.serverState(server_ip):
         return f'Printer could not connect to {server_ip}. \nCheck if server is down, or ip is correct and re-run.'
     else:
@@ -59,6 +59,7 @@ def moonraker_start(server_ip):
         time.sleep(8)
     print("\nPrinter is ready.")
     return ip
+
 
 
 app = Flask(__name__)

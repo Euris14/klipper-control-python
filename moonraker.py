@@ -116,6 +116,19 @@ def rootDirectory(ip): # this function returns all of the root directories on th
     response_json = response.json()
 
     file_amount = len(response_json['result'])
-    root_files = (response_json['result'])
+    root_directories = (response_json['result'])
 
-    return root_files, file_amount
+    return root_directories, file_amount
+
+def directoryContents(ip, dir):
+    response = rq.get(f'{ip}/server/files/list?root={dir}')
+    response_json = response.json()
+    file_index = response_json['result']
+    return file_index 
+
+def gcodeMetadata(ip, file):
+    response = rq.get(f'{ip}/server/files/metadata?filename={file}')
+    response_json = response.json()
+
+    metadata = response_json['result']
+    return metadata
