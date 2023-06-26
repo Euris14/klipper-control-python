@@ -28,7 +28,7 @@ def main():
     print(y_pred)
 
 
-def makeDatabase():
+def makeDatabase(): #this function uses the directoryContents function and gcodeMetadata to find and collect metadata for all gcode files (ie. print time).
     dir_contents = server.directoryContents('http://10.7.1.215', 'gcodes')
     dir_file_amount = len(dir_contents)
     datatypes = ["estimated_time", "layer_height", "object_height", "filament_total"]
