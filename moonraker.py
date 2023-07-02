@@ -101,6 +101,7 @@ def serverCheckServices(ip):# this function checks all of the services up on moo
         elif service:
             active.append(c)
 
+    
     return available_services, active, not_active
 
 def serverState(ip): # this function returns the full server ip, and checks if the ip passed will throw an exception (Most likely wrong ip or server not up.)
@@ -124,6 +125,7 @@ def directoryContents(ip, dir):
     response = rq.get(f'{ip}/server/files/list?root={dir}')
     response_json = response.json()
     file_index = response_json['result']
+
     return file_index 
 
 def gcodeMetadata(ip, file):

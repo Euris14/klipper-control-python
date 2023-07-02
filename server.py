@@ -1,8 +1,11 @@
-from flask import Flask, render_template
 import moonraker
 import sys
 import time
-
+"""
+This is the main module for this app. In this module you will find the functions that
+connect you to the moonraker server, starts a django or flask server with the custom
+made moonraker api.
+"""
 
 def moonraker_start(server_ip): #this function connects to the printer and checks if it's up!
 
@@ -50,6 +53,7 @@ def moonraker_start(server_ip): #this function connects to the printer and check
 
     while printer_status != 'ready':
         print("Printer is not ready!")
+        time.sleep(0.2)
         if printer_status == 'shutdown':
             print(f"Printer status is currently: {printer_status}.")
         elif printer_status == 'startup':
@@ -63,21 +67,12 @@ def moonraker_start(server_ip): #this function connects to the printer and check
         print("Printer is connected.")
         return ip
 
-
-
-app = Flask(__name__)
-
-@app.route('/')
-def index():
-    return render_template('index.html')
-
-
-
 if __name__ == "__main__":
     try:
         ip = sys.argv[1]
+        full_ip = moonraker_start(ip)
     except:
-        print("Proper usage: python server.py 'Server IP'.")
-    full_ip = moonraker_start(ip)
+        print("Proper usage: python server.py {server}.")
+    
     
 

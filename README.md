@@ -15,9 +15,9 @@
 
 
 ## TODO Learning:
-        In order to finish my code I need to learn how to first code a webhook, then be able to use that 
-    webhook on my website. The most important thing right now to focus on is getting my current code to be,
-    able to interact with flask, HTTP, and webhooks.
+        In order to finish my code I need to learn how to first code a webhook, 
+    then be able to use thatwebhook on my website. The most important thing right now to focus on is getting
+    my current code to be, able to interact with flask, HTTP, and webhooks.
 
 
 ## TODO Moonraker API:

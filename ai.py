@@ -16,22 +16,22 @@ def main():
     x = df.drop('estimated time', axis = 1)
     y =df['estimated time']
     
-    X_train, X_test, y_train, y_test = train_test_split(x,y, test_size=.2, random_state=3)
+    X_train, X_test, y_train, y_test = train_test_split(x,y, test_size=.2, random_state=0)
 
     regressor = LinearRegression()
 
     regressor.fit(X_train, y_train)
+    
+    regressor.fit(X_test, y_test)
+
+    ytest = regressor.predict(X_test)
     print(X_test)
-    y_pred = regressor.predict(X_test)
-    y_pred = pandas.DataFrame(y_pred, columns=['Predicted'])
-
-    print(y_pred)
-
+    print(pandas.DataFrame(ytest, columns=['Predicted']))
 
 def makeDatabase(): #this function uses the directoryContents function and gcodeMetadata to find and collect metadata for all gcode files (ie. print time).
     dir_contents = server.directoryContents('http://10.7.1.215', 'gcodes')
     dir_file_amount = len(dir_contents)
-    datatypes = ["estimated_time", "layer_height", "object_height", "filament_total"]
+    datatypes = ["estimated_time (s)", "layer_height (mm)", "object_height (mm)", "filament_total (mm)"]
     
     estimated_times = []
     layer_heights = []
