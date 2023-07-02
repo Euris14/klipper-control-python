@@ -10,7 +10,7 @@ def main():
             df = pandas.read_csv('printertimes.csv')
             break
         except:
-            print("No data found, ")
+            print("No data found, making right now!")
             makeDatabase()
 
     x = df.drop('estimated time', axis = 1)
@@ -31,7 +31,7 @@ def main():
 def makeDatabase(): #this function uses the directoryContents function and gcodeMetadata to find and collect metadata for all gcode files (ie. print time).
     dir_contents = server.directoryContents('http://10.7.1.215', 'gcodes')
     dir_file_amount = len(dir_contents)
-    datatypes = ["estimated_time (s)", "layer_height (mm)", "object_height (mm)", "filament_total (mm)"]
+    datatypes = ["estimated_time", "layer_height", "object_height", "filament_total"]
     
     estimated_times = []
     layer_heights = []
@@ -45,8 +45,8 @@ def makeDatabase(): #this function uses the directoryContents function and gcode
             'filament used' : filament_total
         }
     
-    for i in range(dir_file_amount - 1):
-        name = dir_contents[i]['path']
+    for file in range(dir_file_amount - 1): #
+        name = dir_contents[file]['path']
         metadata = server.gcodeMetadata('http://10.7.1.215', name)
         try:
             if metadata[datatypes[0]]:
