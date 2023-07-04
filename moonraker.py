@@ -1,7 +1,20 @@
 import requests as rq
 import time
 import os
+def authUser(ip, user, passw): # this function gets the user and pass, and returns the user token.
+    pack = {
+    "username": f'{user}',
+    "password": f'{passw}',
+    "source": "moonraker"
+    }
+    login = rq.post(f"{ip}/access/login", params= pack, headers= {"Content-Type": "application/json"} )
 
+    json = login.json()['result']
+    token = json['token']
+    refresh_token = json['refresh_token']
+
+    return token, refresh_token
+    
 def displayTools(ip):
     tools = getTools(ip)
     for tool in tools:
@@ -134,3 +147,4 @@ def gcodeMetadata(ip, file):
 
     metadata = response_json['result']
     return metadata
+

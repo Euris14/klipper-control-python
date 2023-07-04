@@ -1,34 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Print Watcher({{server_ip}})</title>
-        <style>
-            div{
-                color: red;
-            }
-        </style>
+        <title>Moonraker Watcher</title>
+        <link rel="icon" href="images/Logo.png">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="index.css">
     </head>
-    <h1>Print Watcher</h1>
-
+    <header>
+        <a href="index.html" id="headerimg"><img src="images/Header.png"></a>
+    </header>
     <body>
-        <div>
-            <h2>Temperature</h2>
-            <ul>
-                <li>Extruder : 20.2 C</li>
-                <li>Bed Temperature : 25.2 C</li>
-                <li> : 20.2 C</li>
-            </ul>
+        <div id="left">
+            <div id="Temperature"> 
+                <h2><u>Temperature</u></h2>
+                <table id="tempTable">
+                    <tr>
+                        <th>Tool</th>
+                        <th>C</th>
+                    </tr>
+                    <tr>
+                        <td><b>Extruder 1</b></td>
+                        <td>20.5 C</td>
+                    </tr>
+                    <tr>
+                        <td><b>Heated Bed</b></td>
+                        <td>25.4 C</td>
+                    </tr>
+                </table>
+            </div>
+            <div id="Printstat">
+                <h2><u>Current Print</u></h2>
+                <div id="Printstat stats">
+                    {{time_left}}, is left.                    
+                </div>
+            </div>
         </div>
-        <div>
-            <h2>Gcode Files</h2>
-            <ul>
-                <li>First Gcode</li> <a href="index.html"><img src="images/printer.jpg" width="20" height="20" alt="Print"></a>
-                <li>Second Gcode</li> <a href="index.html"><img src="images/printer.jpg" width="20" height="20" alt="Print"></a>
-                <li>Third Gcode</li> <a href="index.html"><img src="images/printer.jpg" width="20" height="20" alt="Print"></a>
-                <li>Fourth Gcode</li> <a href="index.html"><img src="images/printer.jpg" width="20" height="20" alt="Print"></a>
-                <li>Fifth Gcode</li> <a href="index.html"><img src="images/printer.jpg" width="20" height="20" alt="Print"></a>
-            </ul>
-        </div>
-        <p>This is a simple UI created with python</p>
     </body>
 </html>

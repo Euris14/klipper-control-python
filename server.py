@@ -65,7 +65,8 @@ def moonraker_start(server_ip): #this function connects to the printer and check
         time.sleep(8)
     if printer_status == 'ready':
         print("Printer is connected.")
-        return ip
+        time.sleep(.5)
+        print("Starting server.")
 
 if __name__ == "__main__":
     try:

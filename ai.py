@@ -4,6 +4,7 @@ import matplotlib as plt
 import moonraker as server
 from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split
+import time as t
 def main():
     while True:
         try:
@@ -11,8 +12,9 @@ def main():
             break
         except:
             print("No data found, making right now!")
-            makeDatabase()
-
+            makeGcodeDatabase()
+    print("Training AI!")
+    t.sleep(1)
     x = df.drop('estimated time', axis = 1)
     y =df['estimated time']
     
@@ -26,9 +28,17 @@ def main():
 
     ytest = regressor.predict(X_test)
     print(X_test)
-    print(pandas.DataFrame(ytest, columns=['Predicted']))
+    times = []
+    for time in ytest:
+        hours = (time / 60) / 60  
+        times.append(f"%.2f" % hours)
+    print("AI Done Training. Here's your predictions.")
+    t.sleep(2)
+    print(pandas.DataFrame(times, columns=['Time (H)']))
 
-def makeDatabase(): #this function uses the directoryContents function and gcodeMetadata to find and collect metadata for all gcode files (ie. print time).
+
+
+def makeGcodeDatabase(): #this function uses the directoryContents function and gcodeMetadata to find and collect metadata for all gcode files (ie. print time).
     dir_contents = server.directoryContents('http://10.7.1.215', 'gcodes')
     dir_file_amount = len(dir_contents)
     datatypes = ["estimated_time", "layer_height", "object_height", "filament_total"]
@@ -70,5 +80,5 @@ def makeDatabase(): #this function uses the directoryContents function and gcode
 
 
 
-main()
-
+if __name__ == "__main__":
+    main()
