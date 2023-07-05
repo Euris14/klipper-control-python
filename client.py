@@ -36,7 +36,7 @@ async def webhooks():
         async with websockets.connect(url) as ws: # Connects to the Websocket, and starts the function that handles the websocket notifications.
             await handler(ws)
     except TimeoutError:
-        print("Timed out! Server might be down or server address is wrong.")
+        print("Error, Timed out! Server might be down or server address is wrong.")
 
 @app.route("/index", methods = ['GET'])
 def moonraker_start():
