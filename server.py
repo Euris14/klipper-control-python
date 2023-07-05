@@ -8,13 +8,6 @@ made moonraker api.
 """
 
 def moonraker_start(server_ip): #this function connects to the printer and checks if it's up!
-
-    if not moonraker.serverState(server_ip):
-        return f'Printer could not connect to {server_ip}. \nCheck if server is down, or ip is correct and re-run.'
-    else:
-        print("Server was found!")
-        ip = moonraker.serverState(server_ip)
-
     all_services = moonraker.serverCheckServices(ip)[0]
     active_services = moonraker.serverCheckServices(ip)[1]
     unactive_services = moonraker.serverCheckServices(ip)[2]
