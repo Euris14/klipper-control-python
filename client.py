@@ -27,7 +27,7 @@ async def handler(websocket): #this function handles the notifications outputted
             print("Printer has been disconnected!")
         elif method == 'notify_gcode_response':
             print(params)
-            
+
 @app.route("/")          
 async def webhooks():
     token = moonraker.authUser(ip, user, passw)
