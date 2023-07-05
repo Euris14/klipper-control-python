@@ -5,19 +5,19 @@
     in the right direction. Thanks!
 
 ## Usage:
-    python server.py "klipperip"
+    flask --app client run
 
 ## About
-        In this Python project my aim is to be able to make a website that allows me to see and control my 
-    3d printer. At minimum, I would like to be able to see a constant temperature update of all of my tools 
+        In this Python project, my aim is to be able to make a website that allows me to see and control my 
+    3d printer. At a minimum, I would like to be able to see a constant temperature update of all of my tools 
     (ie: Extruder, Hot Bed, etc) temperatures. The most important thing is to have a webcam that is able
     to detect when something in the print goes wrong (ie: stringing, warping, etc).
 
 
 ## TODO Learning:
         In order to finish my code I need to learn how to first code a webhook, 
-    then be able to use thatwebhook on my website. The most important thing right now to focus on is getting
-    my current code to be, able to interact with flask, HTTP, and webhooks.
+    then be able to use that webhook on my website. The most important thing right now to focus on is getting
+    my current code to be, able to interact with Flask, HTTP, and webhooks.
 
 
 ## TODO Moonraker API:
