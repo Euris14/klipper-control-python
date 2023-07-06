@@ -32,7 +32,7 @@ def getTools(ip):# this function gets all available tools like in the temperatur
     return tools
 
 def getServerInfo(ip):# this function gets server information, like cpu info, network info.
-    get = ['/machine/system_info', '/printer/info']
+    get = ['/machine/system_info', '/server/info']
     getResponse = rq.get(f'{ip}{get[0]}')
     json = getResponse.json()
     information = {}  # this dictionary holds all variables to be returned.
@@ -56,12 +56,10 @@ def getServerInfo(ip):# this function gets server information, like cpu info, ne
     response = rq.get(f"{ip}{get[1]}")  # gets reponse from /server/info
     response_json = response.json()
     # stores printer state, and checks if klipper is connected.
-    if not response_json['result']:
-        printer_state = 'error'
-        printer_message = response_json['error']['message']
-    else:
-        printer_state = response_json['result']['state']
-        printer_message = response_json['result']['state_message']
+    klippy_state = response_json['result']['klippy_state']
+    is_klippy_connected = response_json['result']['klippy_connected']
+    components = response_json['result']['components']
+
 
     # seperated and added at the bottom to be able to adjust array object positions.
     information.update({'host_ip': host_ip})
@@ -70,8 +68,9 @@ def getServerInfo(ip):# this function gets server information, like cpu info, ne
     information.update({'sd_size': sd_size})
     information.update({'sd_name': sd_name})
     information.update({'processor': processor})
-    information.update({'printer_state': printer_state})
-    information.update({'printer_message': printer_message})
+    information.update({'klippy_state': klippy_state})
+    information.update({'printer_connection': is_klippy_connected})
+    information.update({'components' : components})
 
     
     return information # returns the dictionary created by {"category":"data"}.
@@ -147,4 +146,5 @@ def gcodeMetadata(ip, file):
 
     metadata = response_json['result']
     return metadata
+
 

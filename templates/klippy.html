@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Moonraker Watcher</title>
+        <link rel="icon" href="static/Logo.png">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="index.css">
+    </head>
+    <header>
+        <a href="/" id="headerimg"><img src="static/Header.png"></a>
+    </header>
+
+    <body>
+        <div class="w3-container">
+            <h2>Klippy: {{klippy_state}}</h2>
+            <div>
+                <form method="post" action="/restartfirm">
+                    <input type="submit" name="submit_button" value="RestartFirm">
+            </div>
+          </div>
+    </body>
+</html>

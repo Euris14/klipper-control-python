@@ -2,7 +2,7 @@ import asyncio
 import websockets
 import moonraker
 import json
-from flask import Flask, Request, render_template
+from flask import Flask, request, render_template, redirect
 import time
 
 f = open("secrets.json")
@@ -14,6 +14,15 @@ port = data['auth']['port']
 ip = f'http://{address}'
 
 app = Flask(__name__)
+
+@app.route("/restartfirm", methods=["GET", "POST"])
+def restartFirmware():
+    if request.method == 'POST':
+        if request.form.get('submit_button') == 'RestartFirm':
+            moonraker.restartFirmware(ip)
+            time.sleep(9)
+    
+    return redirect("/")
 
 async def handler(websocket): #this function handles the notifications outputted by the webhook.
     while True: 
@@ -27,6 +36,7 @@ async def handler(websocket): #this function handles the notifications outputted
             print("Printer has been disconnected!")
         elif method == 'notify_gcode_response':
             print(params)
+            
 
 @app.route("/listener")          
 async def webhooks():
@@ -36,15 +46,10 @@ async def webhooks():
         async with websockets.connect(url) as ws: # Connects to the Websocket, and starts the function that handles the websocket notifications.
             await handler(ws)
     except TimeoutError:
-        print("Error,Timed out! Server might be down or server address is wrong.")
+        print("Error, timed out! Server might be down or server address is wrong.")
 
-@app.route("/", methods = ['GET'])
+@app.route("/", methods = ['GET', 'POST'])
 def moonraker_start():
-    all_services = moonraker.serverCheckServices(ip)[0]
-    active_services = moonraker.serverCheckServices(ip)[1]
-    unactive_services = moonraker.serverCheckServices(ip)[2]
-
-    print(f"\n{len(all_services) - len(unactive_services)} / {len(all_services)} services are up.\n")
         
     while True:# this for loop checks if the getServerInfo function is able to get serverstats, if it can't then it wait 10 seconds.
         try:
@@ -55,14 +60,22 @@ def moonraker_start():
             time.sleep(10)
 
 
-    printer_status = server_stats['printer_state']
+    printer_status = server_stats['printer_connection']
+    klippy_status = server_stats['klippy_state']
 
-    if printer_status != 'ready':
-        print("Printer is ready")
-    elif printer_status == 'ready':
-        print("Printer is connected.")
-        time.sleep(.5)
-        
+    if printer_status:
+        if klippy_status != 'ready':
+            return render_template("klippy.html", klippy_state = klippy_status)
+        else:
+            return render_template("index.html")
+    elif not printer_status:
+        print("Klippy connection is down, restarting now!")
+        nonactive = moonraker.serverCheckServices(ip)[2]
+        for service in nonactive:
+            print('R')
+            moonraker.restartService(ip, service= service)
+        return redirect("/")
+    
+    
 
-    return render_template('index.html', printer = printer_status )
-
+    
