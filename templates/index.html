@@ -2,16 +2,19 @@
 <html lang="en">
     <head>
         <title>Moonraker Watcher</title>
-        <link rel="icon" href="images/Logo.png">
+        <link rel="icon" href="static/Logo.png">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="index.css">
+        <link rel="stylesheet" href="static/index.css">
     </head>
     <header>
-        <a href="index.html" id="headerimg"><img src="images/Header.png"></a>
+        <a href="/" id="headerimg"><img src="static/Header.png"></a>
     </header>
     <body>
-        <h1>Printer</h1>
-        <div id="left">
+        <div>
+            <h1>Printer Cam</h1>
+            <img src ="http://10.7.1.215/webcam/?action=stream" class ="camera-image">
+        </div>
+        <div id="left" class = "w3-container">
             <div id="Temperature"> 
                 <h2><u>Temperature</u></h2>
                 <table id="tempTable">
@@ -30,9 +33,9 @@
                 </table>
             </div>
             <div id="Printstat">
-                <h2><u>Print</u></h2>
+                <h2><u>Current Print</u></h2>
                 <div id="Printstat stats">
-                    {{time_left}}, is left.                    
+                    <p><b>Printer State:</b> {{printer}}.</p>                 
                 </div>
             </div>
         </div>

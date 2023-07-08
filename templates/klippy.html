@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Moonraker Watcher</title>
+        <link rel="icon" href="static/Logo.png">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="static/klippy.css">
+    </head>
+    <header>
+        <a href="/" id="headerimg"><img src="static/Header.png"></a>
+    </header>
+
+    <body>
+        <div>
+            <h1>Printer Cam</h1>
+            <img src ="http://10.7.1.215/webcam/?action=stream" class ="camera-image">
+        </div>
+        <div class="w3-container">
+            <h2>Klippy: {{klippy_state}} | Connected: {{connection}}</h2>
+            <div>
+                <form method="post" action="/button">
+                    <input type="submit" name="submit_button" class = "restartButton" value="Firmware Restart">
+                    <input type="submit" name="submit_button" class = "restartButton" value="Restart Klipper">
+            </div>
+          </div>
+    </body>
+</html>
