@@ -1,3 +1,3 @@
-Printstat .left { 
-    color: red;
+.camera-image {
+    transform: scaleX(0.75) scaleY(0.75) rotate(90deg);
 }

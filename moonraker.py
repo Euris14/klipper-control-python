@@ -146,5 +146,3 @@ def gcodeMetadata(ip, file):
 
     metadata = response_json['result']
     return metadata
-
-
